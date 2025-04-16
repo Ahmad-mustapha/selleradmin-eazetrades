@@ -76,7 +76,7 @@ const ServicesTable: React.FC = () => {
             <tr>
               <th scope="col" className="px-4 py-3 font-medium">Item ID</th>
               <th scope="col" className="px-4 py-3 font-medium">Image</th>
-              <th scope="col" className="px-4 py-3 font-medium">Customer's Name</th>
+              <th scope="col" className="px-4 py-3 font-medium">Customers&apos; Name</th>
               <th scope="col" className="px-4 py-3 font-medium">Reorder Status</th>
               <th scope="col" className="px-4 py-3 font-medium">Unit Price</th>
               <th scope="col" className="px-4 py-3 font-medium"><span className="sr-only">Actions</span></th>

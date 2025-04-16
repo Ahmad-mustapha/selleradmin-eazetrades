@@ -112,9 +112,9 @@ const ColorSwatches: React.FC<{ colors: string[] }> = ({ colors }) => {
 
 const ServiceList: React.FC = () => {
   // Action Handlers (replace with actual logic)
-  const handleAddNewService = () => {
-    console.log('Add New Product clicked');
-  };
+  // const handleAddNewService = () => {
+  //   console.log('Add New Product clicked');
+  // };
 
   const handleEditProduct = (productId: string) => {
     console.log(`Edit product: ${productId}`);

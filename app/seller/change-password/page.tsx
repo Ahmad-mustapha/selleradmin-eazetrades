@@ -1,16 +1,17 @@
-// src/components/auth/ChangePasswordForm.tsx
+// src/app/seller/change-password/page.tsx
+
 'use client';
 
 import React, { useState, FormEvent } from 'react';
 
-// Interface defining the props the form component expects
+// --- Define the Form Component INSIDE the page file ---
+
 interface ChangePasswordFormProps {
   onSubmit: (data: { oldPassword: string; newPassword: string }) => Promise<void>;
   onCancel?: () => void;
   isSubmitting?: boolean;
 }
 
-// The reusable form component
 const ChangePasswordForm: React.FC<ChangePasswordFormProps> = ({
   onSubmit,
   onCancel,
@@ -25,6 +26,7 @@ const ChangePasswordForm: React.FC<ChangePasswordFormProps> = ({
     e.preventDefault();
     setError(null);
 
+    // Validations (keep as is)
     if (!oldPassword || !newPassword || !confirmPassword) {
       setError('All password fields are required.');
       return;
@@ -37,37 +39,37 @@ const ChangePasswordForm: React.FC<ChangePasswordFormProps> = ({
       setError('New password and confirmation password do not match.');
       return;
     }
-     if (oldPassword === newPassword) {
+    if (oldPassword === newPassword) {
       setError('New password cannot be the same as the old password.');
       return;
     }
 
     try {
       await onSubmit({ oldPassword, newPassword });
-      // Optionally clear fields after successful submission if desired
-       setOldPassword('');
-       setNewPassword('');
-       setConfirmPassword('');
-    } catch (err: any) {
-      console.error('Password change failed:', err);
-      setError(err.message || 'Failed to change password. Please try again.');
-       // Do not clear fields on error so user can correct
+      setOldPassword('');
+      setNewPassword('');
+      setConfirmPassword('');
+    } catch (err) { // <--- FIX 1: Changed from catch (err: any)
+      console.error('Password change failed inside form:', err);
+      // Type check the error before accessing properties
+      let errorMessage = 'Failed to change password. Please try again.'; // Default
+      if (err instanceof Error) {
+        errorMessage = err.message; // Safely access message if it's an Error
+      } else if (typeof err === 'string') {
+         errorMessage = err; // Handle if a plain string was thrown
+      }
+      // Add more checks here if your onSubmit can throw other types of objects
+      setError(errorMessage);
     }
   };
 
-  // Note: Removed the extra wrapping div from your code,
-  // the bg-white/shadow should be on the form container itself.
+  // JSX for the form component (keep as is)
   return (
-    <div className="bg-white rounded-lg shadow-md p-6 sm:p-8 max-w-xl">
+    <div className="bg-white rounded-lg shadow-md p-6 sm:p-8 max-w-xl w-full">
       <form onSubmit={handleSubmit} className="space-y-5">
         {/* Old Password Field */}
         <div>
-          <label
-            htmlFor="old-password"
-            className="block text-sm font-medium text-gray-700 mb-1"
-          >
-            Old Password
-          </label>
+          <label htmlFor="old-password" className="block text-sm font-medium text-gray-700 mb-1">Old Password</label>
           <input
             type="password"
             id="old-password"
@@ -75,7 +77,7 @@ const ChangePasswordForm: React.FC<ChangePasswordFormProps> = ({
             value={oldPassword}
             onChange={(e) => setOldPassword(e.target.value)}
             disabled={isSubmitting}
-            className="block w-full rounded-lg border-gray-200 bg-gray-100 px-4 py-2.5 text-sm placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 disabled:opacity-70 disabled:cursor-not-allowed"
+            className="block w-full rounded-lg border border-gray-200 bg-gray-50 px-4 py-2.5 text-sm placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 disabled:opacity-70 disabled:cursor-not-allowed"
             placeholder="Enter old password"
             required
           />
@@ -83,12 +85,7 @@ const ChangePasswordForm: React.FC<ChangePasswordFormProps> = ({
 
         {/* New Password Field */}
         <div>
-          <label
-            htmlFor="new-password"
-            className="block text-sm font-medium text-gray-700 mb-1"
-          >
-            New Password
-          </label>
+          <label htmlFor="new-password" className="block text-sm font-medium text-gray-700 mb-1">New Password</label>
           <input
             type="password"
             id="new-password"
@@ -96,8 +93,8 @@ const ChangePasswordForm: React.FC<ChangePasswordFormProps> = ({
             value={newPassword}
             onChange={(e) => setNewPassword(e.target.value)}
             disabled={isSubmitting}
-            className="block w-full rounded-lg border-gray-200 bg-gray-100 px-4 py-2.5 text-sm placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 disabled:opacity-70 disabled:cursor-not-allowed"
-            placeholder="Enter new password"
+            className="block w-full rounded-lg border border-gray-200 bg-gray-50 px-4 py-2.5 text-sm placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 disabled:opacity-70 disabled:cursor-not-allowed"
+            placeholder="Enter new password (min. 8 characters)"
             required
             minLength={8}
           />
@@ -105,12 +102,7 @@ const ChangePasswordForm: React.FC<ChangePasswordFormProps> = ({
 
         {/* Confirm Password Field */}
         <div>
-          <label
-            htmlFor="confirm-password"
-            className="block text-sm font-medium text-gray-700 mb-1"
-          >
-            Confirm Password
-          </label>
+          <label htmlFor="confirm-password" className="block text-sm font-medium text-gray-700 mb-1">Confirm New Password</label>
           <input
             type="password"
             id="confirm-password"
@@ -118,8 +110,8 @@ const ChangePasswordForm: React.FC<ChangePasswordFormProps> = ({
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             disabled={isSubmitting}
-            className="block w-full rounded-lg border-gray-200 bg-gray-100 px-4 py-2.5 text-sm placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 disabled:opacity-70 disabled:cursor-not-allowed"
-            placeholder="Confirm password"
+            className="block w-full rounded-lg border border-gray-200 bg-gray-50 px-4 py-2.5 text-sm placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 disabled:opacity-70 disabled:cursor-not-allowed"
+            placeholder="Confirm new password"
             required
           />
         </div>
@@ -129,18 +121,20 @@ const ChangePasswordForm: React.FC<ChangePasswordFormProps> = ({
 
         {/* Action Buttons */}
         <div className="flex flex-col sm:flex-row justify-end gap-3 pt-4">
-          <button
-            type="button"
-            onClick={onCancel}
-            disabled={isSubmitting}
-            className="w-full rounded-full border border-indigo-600 bg-white px-6 py-2.5 text-sm font-semibold text-indigo-600 shadow-sm hover:bg-indigo-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            Cancel
-          </button>
+         {onCancel && (
+             <button
+                type="button"
+                onClick={onCancel}
+                disabled={isSubmitting}
+                className="w-full sm:w-auto justify-center rounded-full border border-indigo-600 bg-white px-6 py-2.5 text-sm font-semibold text-indigo-600 shadow-sm hover:bg-indigo-50 disabled:opacity-50 disabled:cursor-not-allowed"
+             >
+                Cancel
+            </button>
+         )}
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full rounded-full bg-indigo-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:bg-indigo-400 disabled:cursor-not-allowed"
+            className="w-full sm:w-auto justify-center rounded-full bg-indigo-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-700 disabled:bg-indigo-400 disabled:cursor-not-allowed"
           >
             {isSubmitting ? 'Changing...' : 'Change password'}
           </button>
@@ -150,4 +144,43 @@ const ChangePasswordForm: React.FC<ChangePasswordFormProps> = ({
   );
 };
 
-export default ChangePasswordForm; // Export the component
+
+// --- Define the MAIN Page Component ---
+export default function ChangePasswordPage() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handlePasswordSubmit = async (data: { oldPassword: string; newPassword: string }) => {
+    setIsSubmitting(true);
+    console.log("Submitting data from page:", data);
+    try {
+      // --- === YOUR API CALL GOES HERE === ---
+      await new Promise(resolve => setTimeout(resolve, 1500)); // Simulate API call
+      console.log('Password change simulated successfully!');
+      // alert('Password changed!');
+
+    } catch (error) { // <--- FIX 2: Changed from catch (error: any)
+      console.error("Error during password change in page handler:", error);
+      // Re-throw the error so the form component's catch block can handle it
+      // No need to inspect the type here if we just re-throw
+      throw error;
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleCancel = () => {
+    console.log("Cancel button clicked");
+     window.history.back();
+  };
+
+  return (
+    <div className="container mx-auto p-4 flex flex-col items-center pt-10">
+      <h1 className="text-2xl font-bold mb-6">Change Your Password</h1>
+      <ChangePasswordForm
+        onSubmit={handlePasswordSubmit}
+        onCancel={handleCancel}
+        isSubmitting={isSubmitting}
+      />
+    </div>
+  );
+}

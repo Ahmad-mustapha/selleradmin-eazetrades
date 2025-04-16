@@ -5,10 +5,8 @@ import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import { RxDashboard } from "react-icons/rx";
 import { FiDatabase } from "react-icons/fi";
-import { TbTransferIn } from "react-icons/tb";
 import { BiLogOut } from "react-icons/bi";
 import { AiOutlineCustomerService } from "react-icons/ai";
-import { FaRegUser } from "react-icons/fa";
 import { GoStop } from "react-icons/go";
 import { BiSolidEdit } from "react-icons/bi";
 import { FiMessageCircle } from "react-icons/fi";
@@ -16,8 +14,6 @@ import { IoIosHelpCircleOutline } from "react-icons/io";
 import { AiOutlineUserDelete } from "react-icons/ai";
 import Logo from '../../../public/sellereazetradelogo.png';
 import { IoList } from "react-icons/io5";
-// Removed import for sidebar.css if you are fully using Tailwind now
-// If you still use sidebar.css for some base styles, keep the import
 
 interface NavLink {
   id: number;

@@ -4,7 +4,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
-import { RxDashboard, RxCross1 } from "react-icons/rx";
+import { RxDashboard } from "react-icons/rx";
 import { FiDatabase } from "react-icons/fi";
 import { BiLogOut } from "react-icons/bi";
 import { AiOutlineCustomerService } from "react-icons/ai";;

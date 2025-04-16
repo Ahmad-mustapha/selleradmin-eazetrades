@@ -15,7 +15,7 @@ interface ProductData {
 const sampleProducts: ProductData[] = [
     {
       id: 1,
-      imageUrl: "/sellerproduct.jpg'", // Replace with your actual image path
+      imageUrl: "/sellerproduct.jpg'",
       name: "Apple Watch Series 4",
       category: "Digital Product",
       price: "₦3,000",
@@ -23,53 +23,54 @@ const sampleProducts: ProductData[] = [
     },
     {
       id: 2,
-      imageUrl: "/sellerproduct.jpg'", // Replace with your actual image path
+      imageUrl: "/sellerproduct.jpg'",
       name: "Microsoft Headsquare",
       category: "Digital Product",
       price: "₦34,000",
-      colors: ["#1F2937", "#FCA5A5", "#60A5FA", "#FCD34D"], // dark-gray, light-red, blue, yellow
+      colors: ["#1F2937", "#FCA5A5", "#60A5FA", "#FCD34D"],
     },
     {
       id: 3,
-      imageUrl: "/sellerproduct.jpg'", // Replace with your actual image path
+      imageUrl: "/sellerproduct.jpg'",
       name: "Women's Dress",
       category: "Fashion",
       price: "₦6,400",
-      colors: ["#86198f", "#93C5FD", "#1E3A8A", "#4F46E5"], // purple, light-blue, dark-blue, indigo
+      colors: ["#86198f", "#93C5FD", "#1E3A8A", "#4F46E5"],
     },
     {
       id: 4,
-      imageUrl: "/sellerproduct.jpg'", // Replace with your actual image path
+      imageUrl: "/sellerproduct.jpg'",
       name: "Samsung A50",
       category: "Mobile",
       price: "₦4,000",
-      colors: ["#1E40AF", "#1F2937", "#991B1B"], // medium-blue, dark-gray, dark-red
+      colors: ["#1E40AF", "#1F2937", "#991B1B"],
     },
     {
       id: 5,
-      imageUrl: "/sellerproduct.jpg'", // Replace with your actual image path
+      imageUrl: "/sellerproduct.jpg'",
       name: "Camera",
       category: "Electronic",
       price: "₦42,000",
-      colors: ["#1E40AF", "#1F2937", "#991B1B"], // medium-blue, dark-gray, dark-red
+      colors: ["#1E40AF", "#1F2937", "#991B1B"],
     },
     {
       id: 6,
-      imageUrl: "/sellerproduct.jpg'", // Replace with your actual image path
+      imageUrl: "/sellerproduct.jpg'",
       name: "Microsoft Headsquare", // Duplicate for example
       category: "Digital Product",
       price: "₦43,000",
-      colors: ["#1F2937", "#FCA5A5", "#60A5FA", "#FCD34D"], // dark-gray, light-red, blue, yellow
+      colors: ["#1F2937", "#FCA5A5", "#60A5FA", "#FCD34D"],
     },
     {
       id: 7,
-      imageUrl: "/sellerproduct.jpg'", // Replace with your actual image path
+      imageUrl: "/sellerproduct.jpg'",
       name: "Women's Dress", // Duplicate for example
       category: "Fashion",
       price: "₦3,000",
-      colors: ["#86198f", "#93C5FD", "#1E3A8A", "#4F46E5"], // purple, light-blue, dark-blue, indigo
+      colors: ["#86198f", "#93C5FD", "#1E3A8A", "#4F46E5"],
     },
 ];
+  console.log(sampleProducts);
   
   // Ensure you have placeholder images in your public/images directory
   // or replace the imageUrl paths with valid URLs.

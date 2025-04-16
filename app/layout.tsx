@@ -1,7 +1,5 @@
 import { Sidebar, Header } from './component/import' 
 import '../globals.css'
-import type { ReactElement, ReactNode } from 'react';
-
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (

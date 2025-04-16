@@ -11,7 +11,6 @@ import {
   ResponsiveContainer,
   TooltipProps, // Import TooltipProps type
 } from 'recharts';
-import { HiChevronDown } from 'react-icons/hi2'; // Icon for dropdown
 
 // Define the type for our data points
 interface VisitData {
@@ -45,7 +44,7 @@ const data: VisitData[] = [
 ];
 
 // Custom Tooltip Component for styling
-const CustomTooltip: React.FC<TooltipProps<number, string>> = ({ active, payload, label }) => {
+const CustomTooltip: React.FC<TooltipProps<number, string>> = ({ active, payload }) => {
   if (active && payload && payload.length) {
     return (
       <div className="bg-indigo-600 text-white px-3 py-1 rounded-md shadow-md text-xs font-medium">
