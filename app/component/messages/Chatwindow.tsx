@@ -68,7 +68,7 @@ const ChatWindow = () => {
   return (
     // Main container for the chat window, takes remaining space (flex-1)
     // Uses flex-col to stack header, messages, footer. h-full ensures it fills height.
-    <div className="flex flex-col h-full bg-[#F9F7FF] w-full lg:w-3/5 lg:flex-1 flex-1/2">
+    <div className="flex flex-col h-full bg-[#F9F7FF] w-full lg:flex-1 flex-1/2">
 
         {/* Chat Header */}
         <header className="flex items-center justify-between p-4 border-b border-gray-200 bg-white relative flex-shrink-0">
